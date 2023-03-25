@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::resource('productos', App\Http\Controllers\ProductoController::class);
 Route::resource('categorias', App\Http\Controllers\CategoriaController::class);
+Route::resource('disenos', App\Http\Controllers\DisenoController::class);
 Route::get('/', function () {
     return view('welcome');
 });
