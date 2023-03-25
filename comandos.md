@@ -14,10 +14,10 @@ composer require ibex/crud-generator --dev
 php artisan vendor:publish --tag=crud
 
 ## crear migrcion el la bd  
-php artisan make:migration factura
+php artisan make:migration factura (se crea sin s pero a la tabla si se la agregamos)
 
 ## crear tabla en la bd (con seed en caso de tener)
 php artisan migrate:fresh --seed
 
 ## crear crud 
-php artisan make:crud facturas
+php artisan make:crud facturas (se crea en base a la tabla con s)
