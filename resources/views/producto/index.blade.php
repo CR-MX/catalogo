@@ -39,6 +39,7 @@
 										<th>Seccion Id</th>
 										<th>Clave</th>
 										<th>Nombre</th>
+										<th>Descripción</th>
 										<th>Imagen</th>
 
                                         <th></th>
@@ -52,6 +53,7 @@
 											<td>{{ $producto->seccion_id }}</td>
 											<td>{{ $producto->clave }}</td>
 											<td>{{ $producto->nombre }}</td>
+											<td>{{ $producto->descripcion }}</td>
 											<td>{{ $producto->imagen }}</td>
 
                                             <td>

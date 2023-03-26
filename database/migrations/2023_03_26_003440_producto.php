@@ -20,6 +20,7 @@ class Producto extends Migration
                 ->references('id')->on('secciones');
             $table->integer('clave');
             $table->text('nombre');
+            $table->text('descripcion');
             $table->longText('imagen');
             $table->timestamps();
         });

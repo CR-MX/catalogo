@@ -35,7 +35,7 @@ class Producto extends Model
      *
      * @var array
      */
-    protected $fillable = ['seccion_id','clave','nombre','imagen'];
+    protected $fillable = ['seccion_id','clave','nombre','descripcion','imagen'];
 
 
     /**
