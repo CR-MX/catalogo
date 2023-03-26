@@ -17,7 +17,7 @@ class Producto extends Migration
             $table->id();
             $table->integer('clave');
             $table->text('nombre');
-            $table->longText('imagen');
+            $table->longText('imagen')->nullable();
             $table->timestamps();
 
 
