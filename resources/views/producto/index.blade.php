@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Producto') }}
+                                Producto (Sección {{ $nombre }})
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('productos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('productos.create',['id'=>$id, 'nombre'=>$nombre]) }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -36,7 +36,6 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Seccion Id</th>
 										<th>Clave</th>
 										<th>Nombre</th>
 										<th>Descripción</th>
@@ -50,7 +49,6 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $producto->seccion_id }}</td>
 											<td>{{ $producto->clave }}</td>
 											<td>{{ $producto->nombre }}</td>
 											<td>{{ $producto->descripcion }}</td>

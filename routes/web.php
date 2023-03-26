@@ -17,6 +17,8 @@ Route::resource('productos', App\Http\Controllers\ProductoController::class);
 Route::resource('categorias', App\Http\Controllers\CategoriaController::class);
 Route::resource('disenos', App\Http\Controllers\DisenoController::class);
 Route::resource('disenos_categorias', App\Http\Controllers\ProductosCategoriaController::class);
+// url productos
+Route::get('/producto/{id}/{nombre}', 'App\Http\Controllers\ProductoController@index')->name('producto.index');
 
 Route::view('/', 'home')->name('home');
 // Route::get('/', function () {

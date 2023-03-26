@@ -16,11 +16,12 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $productos = Producto::paginate();
-
-        return view('producto.index', compact('productos'))
+        $id = $request->id;
+        $nombre = $request->nombre;
+        $productos = Producto::where('seccion_id',$id)->paginate();
+        return view('producto.index', compact('productos','id','nombre'))
             ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
     }
 
@@ -46,9 +47,8 @@ class ProductoController extends Controller
         request()->validate(Producto::$rules);
 
         $producto = Producto::create($request->all());
-
-        return redirect()->route('productos.index')
-            ->with('success', 'Producto created successfully.');
+        return redirect()->route('producto.index', ['id' => $producto->seccion_id, 'nombre' =>$producto->seccion->nombre ])
+        ->with('success', 'Producto created successfully.');
     }
 
     /**

@@ -41,7 +41,7 @@ class Producto extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function seccione()
+    public function seccion()
     {
         return $this->hasOne('App\Seccione', 'id', 'seccion_id');
     }
