@@ -15,11 +15,10 @@ use Illuminate\Support\Facades\Route;
 Route::resource('productos', App\Http\Controllers\ProductoController::class);
 Route::resource('categorias', App\Http\Controllers\CategoriaController::class);
 Route::resource('disenos', App\Http\Controllers\DisenoController::class);
-Route::view('/', 'home')->name('home');
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Auth::routes();
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
