@@ -12,7 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::resource('secciones', App\Http\Controllers\SeccioneController::class);
+Route::resource('productos', App\Http\Controllers\ProductoController::class);
+Route::resource('categorias', App\Http\Controllers\CategoriaController::class);
+Route::resource('disenos', App\Http\Controllers\DisenoController::class);
+Route::resource('disenos_categorias', App\Http\Controllers\ProductosCategoriaController::class);
 
 Route::view('/', 'home')->name('home');
 // Route::get('/', function () {
