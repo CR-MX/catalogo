@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Seccione
+    Secciones
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Seccione') }}
+                                Secciones
                             </span>
 
                              <div class="float-right">
@@ -37,8 +37,9 @@
                                         <th>No</th>
                                         
 										<th>Nombre</th>
+										<th>Productos</th>
 
-                                        <th></th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -47,9 +48,12 @@
                                             <td>{{ ++$i }}</td>
                                             
 											<td>{{ $seccione->nombre }}</td>
-
+                                            <td>
+                                                <a class="btn btn-sm btn-info " href="{{ route('secciones.show',$seccione->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver Producto') }}</a>
+                                            </td>
                                             <td>
                                                 <form action="{{ route('secciones.destroy',$seccione->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-info " href="{{ route('secciones.show',$seccione->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-primary " href="{{ route('secciones.show',$seccione->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('secciones.edit',$seccione->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf

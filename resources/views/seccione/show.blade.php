@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $seccione->name ?? "{{ __('Show') Seccione" }}
+    {{ __('Show') }} Secciones
 @endsection
 
 @section('content')
