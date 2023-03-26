@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Diseno') }}
+                                Diseño (Categoría {{ $nombre }})
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('disenos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('disenos.create',['id'=>$id, 'nombre'=>$nombre]) }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -36,7 +36,6 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Categoria Id</th>
 										<th>Clave</th>
 										<th>Imagen Ligera</th>
 										<th>Imagen</th>
@@ -49,7 +48,6 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $diseno->categoria_id }}</td>
 											<td>{{ $diseno->clave }}</td>
 											<td>{{ $diseno->imagen_ligera }}</td>
 											<td>{{ $diseno->imagen }}</td>

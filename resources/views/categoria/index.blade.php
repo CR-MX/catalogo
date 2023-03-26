@@ -37,6 +37,7 @@
                                         <th>No</th>
                                         
 										<th>Nombre</th>
+										<th>Diseños</th>
 
                                         <th></th>
                                     </tr>
@@ -47,7 +48,9 @@
                                             <td>{{ ++$i }}</td>
                                             
 											<td>{{ $categoria->nombre }}</td>
-
+                                            <td>
+                                                <a class="btn btn-sm btn-warning " href="{{ route('diseno.index',['id'=>$categoria->id, 'nombre'=>$categoria->nombre]) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver Diseños') }}</a>
+                                            </td>
                                             <td>
                                                 <form action="{{ route('categorias.destroy',$categoria->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('categorias.show',$categoria->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>

@@ -16,11 +16,13 @@ class DisenoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $disenos = Diseno::paginate();
+        $id = $request->id;
+        $nombre = $request->nombre;
+        $disenos = Diseno::where('categoria_id',$id)->paginate();
 
-        return view('diseno.index', compact('disenos'))
+        return view('diseno.index', compact('disenos','id','nombre'))
             ->with('i', (request()->input('page', 1) - 1) * $disenos->perPage());
     }
 
@@ -47,7 +49,7 @@ class DisenoController extends Controller
 
         $diseno = Diseno::create($request->all());
 
-        return redirect()->route('disenos.index')
+        return redirect()->route('disenos.index', ['id' => $diseno->categoria_id, 'nombre' =>$diseno->categoria->nombre ])
             ->with('success', 'Diseno created successfully.');
     }
 
