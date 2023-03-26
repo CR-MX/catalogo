@@ -49,7 +49,7 @@
                                             
 											<td>{{ $seccione->nombre }}</td>
                                             <td>
-                                                <a class="btn btn-sm btn-info " href="{{ route('secciones.show',$seccione->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver Producto') }}</a>
+                                                <a class="btn btn-sm btn-warning " href="{{ route('secciones.show',$seccione->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver Productos') }}</a>
                                             </td>
                                             <td>
                                                 <form action="{{ route('secciones.destroy',$seccione->id) }}" method="POST">
