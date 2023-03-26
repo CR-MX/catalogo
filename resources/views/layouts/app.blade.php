@@ -38,11 +38,8 @@
                                 Administración
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('productos.index') }}">
-                                    Productos
-                                </a>
-                                <a class="dropdown-item" href="{{ route('disenos.index') }}">
-                                    Diseños (temporal)
+                                <a class="dropdown-item" href="{{ route('secciones.index') }}">
+                                    Secciones
                                 </a>
                                 <a class="dropdown-item" href="{{ route('categorias.index') }}">
                                     Categorías
