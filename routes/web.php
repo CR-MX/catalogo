@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::resource('productos', App\Http\Controllers\ProductoController::class);
-Route::resource('categorias', App\Http\Controllers\CategoriaController::class);
 Route::get('/', function () {
     return view('welcome');
 });
