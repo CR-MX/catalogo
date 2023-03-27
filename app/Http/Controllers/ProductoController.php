@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Producto;
+use App\Categoria;
+use App\ProductosCategoria;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class ProductoController
@@ -110,16 +114,39 @@ class ProductoController extends Controller
     public function cat_pro($id)
     {
         $producto = Producto::find($id);
-        return view('producto.categoria', compact('producto'));
+        $categorias = DB::select(DB::raw("
+            SELECT
+                c.id,
+                c.nombre,
+                if(pc.id is not null, 1, 0)  as 'es_check'
+            FROM
+                categorias c
+                LEFT JOIN( SELECT 
+                    pc.id, pc.producto_id, pc.categoria_id 
+                    FROM productos_categorias pc 
+                    WHERE pc.producto_id = ".$id." ) as pc ON pc.categoria_id = c.id
+            "));
+        return view('producto.categoria', compact('producto','categorias'));
     }
 
-    // public function update(Request $request, Producto $producto)
-    // {
-    //     request()->validate(Producto::$rules);
-
-    //     $producto->update($request->all());
-
-    //     return redirect()->route('productos.index')
-    //         ->with('success', 'Producto updated successfully');
-    // }
+    public function updatecatpro(Request $request, Producto $producto)
+    {
+        $pro = Producto::find($request->id);
+        $pro->categoria()->delete();
+        $check_cat = $request->cat;
+        if($check_cat){
+            $dateNow = Carbon::now()->toDateTimeString();
+            foreach($check_cat as $item){
+                $arreglo_cat = [
+                    'producto_id' => $pro->id,
+                    'categoria_id' => $item,
+                    'create_at' => $dateNow,
+                    'updated_at' => $dateNow,
+                ];
+                $productosCategoria = ProductosCategoria::create($arreglo_cat);
+            }
+        }
+        return redirect()->route('productos.index')
+            ->with('success', 'Producto updated successfully');
+    }
 }

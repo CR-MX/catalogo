@@ -20,6 +20,7 @@ Route::resource('disenos_categorias', App\Http\Controllers\ProductosCategoriaCon
 // url productos
 Route::get('/producto/{id}/{nombre}', 'App\Http\Controllers\ProductoController@index')->name('producto.index');
 Route::get('/cat_pro/{id}', 'App\Http\Controllers\ProductoController@cat_pro')->name('producto.cat_pro');
+Route::put('/updatecatpro/{id}', 'App\Http\Controllers\ProductoController@updatecatpro')->name('producto.updatecatpro');
 // diseno
 Route::get('/diseno/{id}/{nombre}', 'App\Http\Controllers\DisenoController@index')->name('diseno.index');
 // 

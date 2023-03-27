@@ -13,41 +13,41 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Producto</span>
+                        <span class="card-title">{{ __('Update') }} Producto {{$producto->id}}</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('productos.update', $producto->id) }}" role="form"
-                            enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
+                        
+                            {!! Form::model ($producto, ['route' => ['producto.updatecatpro',$producto->id], 'method'=>'PUT']) !!}
                             @csrf
-
+                            <input class="d-none" type="text" name="id" value="{{$producto->id}}" >
                             <div class="box box-info padding-1">
                                 <div class="box-body">
+                                    <div class="container">
 
-                                    <div class="form-group">
-                                        {{ Form::label('seccion_id', 'Sección') }}
-                                        {{ Form::select('seccion_id', [request()->id => request()->nombre], null, ['class' => 'form-control' . ($errors->has('seccion_id') ? ' is-invalid' : '')]) }}
-                                        {!! $errors->first('seccion_id', '<div class="invalid-feedback">:message</div>') !!}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ Form::label('clave') }}
-                                        {{ Form::text('clave', $producto->clave, ['class' => 'form-control' . ($errors->has('clave') ? ' is-invalid' : ''), 'placeholder' => 'Clave']) }}
-                                        {!! $errors->first('clave', '<div class="invalid-feedback">:message</div>') !!}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ Form::label('nombre') }}
-                                        {{ Form::text('nombre', $producto->nombre, ['class' => 'form-control' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) }}
-                                        {!! $errors->first('nombre', '<div class="invalid-feedback">:message</div>') !!}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ Form::label('descripcion') }}
-                                        {{ Form::text('descripcion', $producto->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'descripcion']) }}
-                                        {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</div>') !!}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ Form::label('imagen') }}
-                                        {{ Form::text('imagen', $producto->imagen, ['class' => 'form-control' . ($errors->has('imagen') ? ' is-invalid' : ''), 'placeholder' => 'Imagen']) }}
-                                        {!! $errors->first('imagen', '<div class="invalid-feedback">:message</div>') !!}
+                                        {{-- <div class="row">
+                                            {{ Form::checkbox('admin') }} 
+                                            //will produces the following HTML
+                                            <input name="admin" type="checkbox" value="1">
+
+                                            {{ Form::checkbox('admin', 'yes', true) }}
+                                            //will produces the following HTML
+                                            <input checked="checked" name="admin" type="checkbox" value="yes">
+                                        </div> --}}
+                                        <div class="row">
+                                            <li class="list-group-item list-group-item-primary">
+                                                {{ Form::label('Selecciona el Rol') }}
+                                            </li>
+                                            <ul class="list-group">
+                                                @foreach ($categorias as $cat)
+                                                    <li class="list-group-item">
+                                                        {{-- {{$cat->es_check  ? 'checked="checked"' :''   }} --}}
+                                                        {!! Form::checkbox('cat[]',$cat->id,null,['class' => 'mr-1',$cat->es_check  ? 'checked="checked"' :'' ]) !!}
+                                                        {{$cat->nombre}}
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+
                                     </div>
 
                                 </div>
@@ -56,7 +56,7 @@
                                 </div>
                             </div>
 
-                        </form>
+                            {!! Form::close() !!}
                     </div>
                 </div>
             </div>

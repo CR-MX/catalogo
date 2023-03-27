@@ -45,6 +45,9 @@ class Producto extends Model
     {
         return $this->hasOne('App\Seccione', 'id', 'seccion_id');
     }
+    public function categoria()
+    {
+        return $this->hasMany('App\ProductosCategoria', 'producto_id', 'id');
+    }
     
-
 }
