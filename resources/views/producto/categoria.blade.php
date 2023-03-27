@@ -23,16 +23,6 @@
                             <div class="box box-info padding-1">
                                 <div class="box-body">
                                     <div class="container">
-
-                                        {{-- <div class="row">
-                                            {{ Form::checkbox('admin') }} 
-                                            //will produces the following HTML
-                                            <input name="admin" type="checkbox" value="1">
-
-                                            {{ Form::checkbox('admin', 'yes', true) }}
-                                            //will produces the following HTML
-                                            <input checked="checked" name="admin" type="checkbox" value="yes">
-                                        </div> --}}
                                         <div class="row">
                                             <li class="list-group-item list-group-item-primary">
                                                 {{ Form::label('Selecciona el Rol') }}
@@ -40,22 +30,21 @@
                                             <ul class="list-group">
                                                 @foreach ($categorias as $cat)
                                                     <li class="list-group-item">
-                                                        {{-- {{$cat->es_check  ? 'checked="checked"' :''   }} --}}
                                                         {!! Form::checkbox('cat[]',$cat->id,null,['class' => 'mr-1',$cat->es_check  ? 'checked="checked"' :'' ]) !!}
                                                         {{$cat->nombre}}
                                                     </li>
                                                 @endforeach
                                             </ul>
                                         </div>
-
+                                        <br>
+                                        <div class="row d-flex justify-content-center">
+                                            <a href="{{ route('productos.index',['id' => $producto->seccion_id, 'nombre' =>$producto->seccion->nombre ]) }}" class="btn btn-danger col col-sm-2">{{ __('Cancelar')}}</a>    
+                                            <div class="col col-sm-2"></div>
+                                            <button type="submit" id="btn-aceptar" onclick="myFunction();" class="btn btn-primary col col-sm-2">Aceptar</button>
+                                        </div>
                                     </div>
-
-                                </div>
-                                <div class="box-footer mt20">
-                                    <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
                                 </div>
                             </div>
-
                             {!! Form::close() !!}
                     </div>
                 </div>
