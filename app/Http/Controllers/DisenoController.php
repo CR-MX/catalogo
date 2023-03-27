@@ -75,8 +75,8 @@ class DisenoController extends Controller
     public function edit($id)
     {
         $diseno = Diseno::find($id);
-
-        return view('diseno.edit', compact('diseno'));
+        $categoria =[$diseno->categoria->id => $diseno->categoria->nombre ] ;
+        return view('diseno.edit', compact('diseno','categoria'));
     }
 
     /**
