@@ -106,4 +106,20 @@ class ProductoController extends Controller
         return redirect()->route('productos.index')
             ->with('success', 'Producto deleted successfully');
     }
+
+    public function cat_pro($id)
+    {
+        $producto = Producto::find($id);
+        return view('producto.categoria', compact('producto'));
+    }
+
+    // public function update(Request $request, Producto $producto)
+    // {
+    //     request()->validate(Producto::$rules);
+
+    //     $producto->update($request->all());
+
+    //     return redirect()->route('productos.index')
+    //         ->with('success', 'Producto updated successfully');
+    // }
 }

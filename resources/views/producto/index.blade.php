@@ -41,7 +41,8 @@
 										<th>Descripción</th>
 										<th>Imagen</th>
 
-                                        <th></th>
+                                        <th>Categorias</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,7 +54,9 @@
 											<td>{{ $producto->nombre }}</td>
 											<td>{{ $producto->descripcion }}</td>
 											<td>{{ $producto->imagen }}</td>
-
+                                            <td>
+                                                <a class="btn btn-sm btn-warning " href="{{ route('producto.cat_pro',$producto->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver Categorias') }}</a>
+                                            </td>
                                             <td>
                                                 <form action="{{ route('productos.destroy',$producto->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('productos.show',$producto->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
