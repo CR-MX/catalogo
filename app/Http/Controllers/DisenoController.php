@@ -49,7 +49,7 @@ class DisenoController extends Controller
 
         $diseno = Diseno::create($request->all());
 
-        return redirect()->route('disenos.index', ['id' => $diseno->categoria_id, 'nombre' =>$diseno->categoria->nombre ])
+        return redirect()->route('disenos.index',['id' => $diseno->categoria_id,'nombre' =>$diseno->categoria->nombre])
             ->with('success', 'Diseno created successfully.');
     }
 
@@ -92,7 +92,7 @@ class DisenoController extends Controller
 
         $diseno->update($request->all());
 
-        return redirect()->route('disenos.index')
+        return redirect()->route('disenos.index',['id' => $diseno->categoria_id,'nombre' =>$diseno->categoria->nombre])
             ->with('success', 'Diseno updated successfully');
     }
 

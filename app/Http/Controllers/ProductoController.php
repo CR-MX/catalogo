@@ -51,7 +51,7 @@ class ProductoController extends Controller
         request()->validate(Producto::$rules);
 
         $producto = Producto::create($request->all());
-        return redirect()->route('producto.index', ['id' => $producto->seccion_id, 'nombre' =>$producto->seccion->nombre ])
+        return redirect()->route('producto.index',['id' => $producto->seccion_id,'nombre' =>$producto->seccion->nombre])
         ->with('success', 'Producto created successfully.');
     }
 
@@ -94,7 +94,7 @@ class ProductoController extends Controller
 
         $producto->update($request->all());
 
-        return redirect()->route('productos.index')
+        return redirect()->route('productos.index',['id' => $producto->seccion_id, 'nombre' =>$producto->seccion->nombre ])
             ->with('success', 'Producto updated successfully');
     }
 
@@ -146,7 +146,7 @@ class ProductoController extends Controller
                 $productosCategoria = ProductosCategoria::create($arreglo_cat);
             }
         }
-        return redirect()->route('productos.index')
+        return redirect()->route('productos.index',['id' => $pro->seccion_id,'nombre' =>$pro->seccion->nombre])
             ->with('success', 'Producto updated successfully');
     }
 }
