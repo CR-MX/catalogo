@@ -54,7 +54,6 @@
 
                                             <td>
                                                 <form action="{{ route('disenos.destroy',$diseno->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('disenos.show',$diseno->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('disenos.edit',$diseno->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')

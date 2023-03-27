@@ -53,8 +53,6 @@
                                             </td>
                                             <td>
                                                 <form action="{{ route('secciones.destroy',$seccione->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-info " href="{{ route('secciones.show',$seccione->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('secciones.show',$seccione->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('secciones.edit',$seccione->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
