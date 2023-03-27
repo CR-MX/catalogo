@@ -3,7 +3,8 @@
         
         <div class="form-group">
             {{ Form::label('seccion_id','Sección') }}
-            {{ Form::select('seccion_id', [request()->id => request()->nombre],null ,['class' => 'form-control' . ($errors->has('seccion_id') ? ' is-invalid' : '')]) }}
+            <?php $select = $seccion ?? [request()->id => request()->nombre]; ?>
+            {{ Form::select('seccion_id',$select,null,['class' => 'form-control' . ($errors->has('seccion_id') ? ' is-invalid' : '')]) }}
             {!! $errors->first('seccion_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">

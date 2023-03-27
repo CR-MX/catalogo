@@ -77,8 +77,8 @@ class ProductoController extends Controller
     public function edit($id)
     {
         $producto = Producto::find($id);
-
-        return view('producto.edit', compact('producto'));
+        $seccion =[$producto->seccion->id => $producto->seccion->nombre ] ;
+        return view('producto.edit', compact('producto','seccion'));
     }
 
     /**
