@@ -56,7 +56,7 @@
 											<td>{{ $producto->clave }}</td>
 											<td>{{ $producto->nombre }}</td>
 											<td>{{ $producto->descripcion }}</td>
-											<td>{{ $producto->imagen }}</td>
+											<td><a href="{{ $producto->imagen }}" target="_blank">Ver Imagen</a></td>
                                             <td>
                                                 <a class="btn btn-sm btn-warning " href="{{ route('producto.cat_pro',$producto->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver Categorias') }}</a>
                                             </td>

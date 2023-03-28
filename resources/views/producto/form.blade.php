@@ -18,14 +18,19 @@
                 {!! $errors->first('nombre', '<div class="invalid-feedback">:message</div>') !!}
             </div>
             <div class="form-group">
-                {{ Form::label('descripcion') }}
+                {{ Form::label('descripción') }}
                 {{ Form::text('descripcion', $producto->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'descripcion']) }}
                 {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</div>') !!}
             </div>
-            <div class="form-group">
-                {{ Form::label('imagen') }}
-                {{ Form::text('imagen', $producto->imagen, ['class' => 'form-control' . ($errors->has('imagen') ? ' is-invalid' : ''), 'placeholder' => 'Imagen']) }}
-                {!! $errors->first('imagen', '<div class="invalid-feedback">:message</div>') !!}
+            <div class="col-sm p-1 form-group">
+                @if ($producto->imagen)
+                <label for="imagen">
+                    Imagen (<a href="{{ $producto->imagen }}" target="_blank">Ver Imagen anterior</a>, si subes una imgen se va a sobrescribir)
+                </label>
+                @else
+                <label for="imagen">Imagen</label>
+                @endif
+                <input type="file" name="imagen" size="50" class="form-control">
             </div>
             <br>
             <div class="row d-flex justify-content-center">

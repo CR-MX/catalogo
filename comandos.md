@@ -17,7 +17,10 @@ php artisan vendor:publish --tag=crud
 php artisan make:migration factura (se crea sin s pero a la tabla si se la agregamos)
 
 ## crear tabla en la bd (con seed en caso de tener)
-php artisan migrate:fresh --seed
+php artisan migrate:fresh --seed5
 
 ## crear crud 
 php artisan make:crud facturas  (se crea en base a la tabla con s)
+
+# Para hacer link simbolico de la carpeta storage/public  y acceder desde su URL
+php artisan storage:linka

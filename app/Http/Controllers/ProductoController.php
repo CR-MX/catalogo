@@ -51,6 +51,12 @@ class ProductoController extends Controller
         request()->validate(Producto::$rules);
 
         $producto = Producto::create($request->all());
+        if ($producto->imagen != null) {
+            $nombre = 'imagen_'.$producto->id.'_'.$producto->imagen->getClientOriginalName();;
+            $producto->imagen->storeAs('public',$nombre);
+            $producto->imagen = '/storage/'.$nombre;
+            $producto->save();
+        }
         return redirect()->route('producto.index',['id' => $producto->seccion_id,'nombre' =>$producto->seccion->nombre])
         ->with('success', 'Producto created successfully.');
     }
