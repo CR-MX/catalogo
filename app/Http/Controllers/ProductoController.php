@@ -52,10 +52,11 @@ class ProductoController extends Controller
 
         $producto = Producto::create($request->all());
         if ($producto->imagen != null) {
-            $nombre = 'imagen_'.$producto->id.'_'.$producto->imagen->getClientOriginalName();;
+            $nombre = 'imagen_'.$producto->id.'_'.$producto->imagen->getClientOriginalName();
             $producto->imagen->storeAs('public',$nombre);
-            $producto->imagen = '/storage/'.$nombre;
-            $producto->save();
+            $getProducto = Producto::find($producto->id);
+            $getProducto->imagen = '/storage/'.$nombre;
+            $getProducto->save();
         }
         return redirect()->route('producto.index',['id' => $producto->seccion_id,'nombre' =>$producto->seccion->nombre])
         ->with('success', 'Producto created successfully.');
@@ -97,9 +98,21 @@ class ProductoController extends Controller
     public function update(Request $request, Producto $producto)
     {
         request()->validate(Producto::$rules);
-
-        $producto->update($request->all());
-
+        if ($request->imagen != null) {
+            if ($producto->imagen != null) {
+                $fileImagen = base_path('storage/app/public/'.explode("/",$producto->imagen)[2]);
+                if(file_exists($fileImagen)){
+                    unlink($fileImagen);
+                }
+            }
+            $nombre = 'imagen_'.$producto->id.'_'. $request->imagen->getClientOriginalName();
+            $request->imagen->storeAs('public',$nombre);
+            $producto->update($request->all());
+            $producto->imagen = '/storage/'.$nombre;
+            $producto->save();  
+        }else{
+            $producto->update($request->all());
+        }
         return redirect()->route('productos.index',['id' => $producto->seccion_id, 'nombre' =>$producto->seccion->nombre ])
             ->with('success', 'Producto updated successfully');
     }

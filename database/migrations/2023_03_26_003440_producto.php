@@ -15,13 +15,13 @@ class Producto extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('seccion_id')->nullable();
+            $table->unsignedBigInteger('seccion_id');
             $table->foreign('seccion_id')
                 ->references('id')->on('secciones');
             $table->integer('clave');
             $table->text('nombre');
             $table->text('descripcion');
-            $table->longText('imagen');
+            $table->longText('imagen')->nullable();
             $table->timestamps();
         });
     }
