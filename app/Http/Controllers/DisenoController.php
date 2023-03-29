@@ -48,7 +48,20 @@ class DisenoController extends Controller
         request()->validate(Diseno::$rules);
 
         $diseno = Diseno::create($request->all());
-
+        if ($diseno->imagen_ligera != null) {
+            $nombre = 'imgLigDiseno_'.$diseno->id.'_'.$diseno->imagen_ligera->getClientOriginalName();
+            $diseno->imagen_ligera->storeAs('public',$nombre);
+            $getDiseno = Diseno::find($diseno->id);
+            $getDiseno->imagen_ligera = '/storage/'.$nombre;
+            $getDiseno->save();
+        }
+        if ($diseno->imagen != null) {
+            $nombre = 'imgDiseno_'.$diseno->id.'_'.$diseno->imagen->getClientOriginalName();
+            $diseno->imagen->storeAs('public',$nombre);
+            $getDiseno = Diseno::find($diseno->id);
+            $getDiseno->imagen = '/storage/'.$nombre;
+            $getDiseno->save();
+        }
         return redirect()->route('disenos.index',['id' => $diseno->categoria_id,'nombre' =>$diseno->categoria->nombre])
             ->with('success', 'Diseno created successfully.');
     }
@@ -89,9 +102,39 @@ class DisenoController extends Controller
     public function update(Request $request, Diseno $diseno)
     {
         request()->validate(Diseno::$rules);
-
-        $diseno->update($request->all());
-
+        $seModifico = false;
+        if ($request->imagen != null) {
+            $seModifico = true;
+            if ($diseno->imagen != null) {
+                $fileImagen = base_path('storage/app/public/'.explode("/",$diseno->imagen)[2]);
+                if(file_exists($fileImagen)){
+                    unlink($fileImagen);
+                }
+            }
+            $nombre = 'imgDiseno_'.$diseno->id.'_'. $request->imagen->getClientOriginalName();
+            $request->imagen->storeAs('public',$nombre);
+            $diseno->update($request->all());
+            $diseno->imagen = '/storage/'.$nombre;
+            $diseno->save();  
+        }
+        
+        if ($request->imagen_ligera != null) {
+            $seModifico = true;
+            if ($diseno->imagen_ligera != null) {
+                $fileImagen = base_path('storage/app/public/'.explode("/",$diseno->imagen_ligera)[2]);
+                if(file_exists($fileImagen)){
+                    unlink($fileImagen);
+                }
+            }
+            $nombre = 'imgLigDiseno_'.$diseno->id.'_'. $request->imagen_ligera->getClientOriginalName();
+            $request->imagen_ligera->storeAs('public',$nombre);
+            $diseno->update($request->all());
+            $diseno->imagen_ligera = '/storage/'.$nombre;
+            $diseno->save();  
+        }
+        if ($seModifico == false) {
+            $diseno->update($request->all());
+        }
         return redirect()->route('disenos.index',['id' => $diseno->categoria_id,'nombre' =>$diseno->categoria->nombre])
             ->with('success', 'Diseno updated successfully');
     }

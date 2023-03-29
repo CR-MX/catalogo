@@ -52,8 +52,16 @@
                                             <td>{{ ++$i }}</td>
                                             
 											<td>{{ $diseno->clave }}</td>
-											<td>{{ $diseno->imagen_ligera }}</td>
-											<td>{{ $diseno->imagen }}</td>
+											<td>
+                                                @if ($diseno->imagen_ligera)
+                                                <a href="{{ $diseno->imagen_ligera }}" target="_blank">Ver Imagen Ligera</a>
+                                                @endif
+                                            </td>
+											<td>
+                                                @if ($diseno->imagen)
+                                                <a href="{{ $diseno->imagen }}" target="_blank">Ver Imagen</a>
+                                                @endif
+                                            </td>
 
                                             <td>
                                                 <form action="{{ route('disenos.destroy',$diseno->id) }}" method="POST">
