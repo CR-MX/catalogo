@@ -46,7 +46,13 @@ class SeccioneController extends Controller
         request()->validate(Seccione::$rules);
 
         $seccione = Seccione::create($request->all());
-
+        if ($seccione->imagen != null) {
+            $nombre = 'imgSeccion_'.$seccione->id.'_'.$seccione->imagen->getClientOriginalName();
+            $seccione->imagen->storeAs('public',$nombre);
+            $getSeccione = Seccione::find($seccione->id);
+            $getSeccione->imagen = '/storage/'.$nombre;
+            $getSeccione->save();
+        }
         return redirect()->route('secciones.index')
             ->with('success', 'Seccione created successfully.');
     }
@@ -87,8 +93,21 @@ class SeccioneController extends Controller
     public function update(Request $request, Seccione $seccione)
     {
         request()->validate(Seccione::$rules);
-
-        $seccione->update($request->all());
+        if ($request->imagen != null) {
+            if ($seccione->imagen != null) {
+                $fileImagen = base_path('storage/app/public/'.explode("/",$seccione->imagen)[2]);
+                if(file_exists($fileImagen)){
+                    unlink($fileImagen);
+                }
+            }
+            $nombre = 'imgSeccion_'.$seccione->id.'_'. $request->imagen->getClientOriginalName();
+            $request->imagen->storeAs('public',$nombre);
+            $seccione->update($request->all());
+            $seccione->imagen = '/storage/'.$nombre;
+            $seccione->save();  
+        }else{
+            $seccione->update($request->all());
+        }
 
         return redirect()->route('secciones.index')
             ->with('success', 'Seccione updated successfully');

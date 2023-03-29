@@ -24,11 +24,11 @@
             </div>
             <div class="col-sm p-1 form-group">
                 @if ($producto->imagen)
-                <label for="imagen">
-                    Imagen (<a href="{{ $producto->imagen }}" target="_blank">Ver Imagen anterior</a>, si subes una imgen se va a sobrescribir)
-                </label>
+                    <label for="imagen">
+                        Imagen (<a href="{{ $producto->imagen }}" target="_blank">Ver Imagen anterior</a>, si subes una imgen se va a sobrescribir)
+                    </label>
                 @else
-                <label for="imagen">Imagen</label>
+                    <label for="imagen">Imagen</label>
                 @endif
                 <input type="file" name="imagen" size="50" class="form-control">
             </div>

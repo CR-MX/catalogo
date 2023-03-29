@@ -52,7 +52,7 @@ class ProductoController extends Controller
 
         $producto = Producto::create($request->all());
         if ($producto->imagen != null) {
-            $nombre = 'imagen_'.$producto->id.'_'.$producto->imagen->getClientOriginalName();
+            $nombre = 'imgProducto_'.$producto->id.'_'.$producto->imagen->getClientOriginalName();
             $producto->imagen->storeAs('public',$nombre);
             $getProducto = Producto::find($producto->id);
             $getProducto->imagen = '/storage/'.$nombre;
@@ -105,7 +105,7 @@ class ProductoController extends Controller
                     unlink($fileImagen);
                 }
             }
-            $nombre = 'imagen_'.$producto->id.'_'. $request->imagen->getClientOriginalName();
+            $nombre = 'imgProducto_'.$producto->id.'_'. $request->imagen->getClientOriginalName();
             $request->imagen->storeAs('public',$nombre);
             $producto->update($request->all());
             $producto->imagen = '/storage/'.$nombre;

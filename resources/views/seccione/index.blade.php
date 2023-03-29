@@ -37,6 +37,7 @@
                                         <th>No</th>
                                         
 										<th>Nombre</th>
+										<th>Imagen</th>
 										<th>Productos</th>
 
                                         <th>Acciones</th>
@@ -48,6 +49,11 @@
                                             <td>{{ ++$i }}</td>
                                             
 											<td>{{ $seccione->nombre }}</td>
+											<td>
+                                                @if ($seccione->imagen)
+                                                <a href="{{ $seccione->imagen }}" target="_blank">Ver Imagen</a>
+                                                @endif
+                                            </td>
                                             <td>
                                                 <a class="btn btn-sm btn-warning " href="{{ route('producto.index',['id'=>$seccione->id, 'nombre'=>$seccione->nombre]) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver Productos') }}</a>
                                             </td>

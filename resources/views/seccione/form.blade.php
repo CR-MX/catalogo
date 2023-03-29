@@ -7,7 +7,16 @@
                     {{ Form::text('nombre', $seccione->nombre, ['class' => 'form-control' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) }}
                     {!! $errors->first('nombre', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
-
+                <div class="col-sm p-1 form-group">
+                    @if ($seccione->imagen)
+                        <label for="imagen">
+                            Imagen (<a href="{{ $seccione->imagen }}" target="_blank">Ver Imagen anterior</a>, si subes una imgen se va a sobrescribir)
+                        </label>
+                    @else
+                        <label for="imagen">Imagen</label>
+                    @endif
+                    <input type="file" name="imagen" size="50" class="form-control">
+                </div>
             </div>
             <br>
             <div class="row d-flex justify-content-center">
