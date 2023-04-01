@@ -23,7 +23,7 @@ Route::get('/cat_pro/{id}', 'App\Http\Controllers\ProductoController@cat_pro')->
 Route::put('/updatecatpro/{id}', 'App\Http\Controllers\ProductoController@updatecatpro')->name('producto.updatecatpro');
 // diseno
 Route::get('/diseno/{id}/{nombre}', 'App\Http\Controllers\DisenoController@index')->name('diseno.index');
-// 
-
-Route::view('/', 'home')->name('home');
+// inicio
+Route::get('/', 'App\Http\Controllers\SeccioneController@inicio')->name('carruseles.inicio');
+// Route::view('/', 'home')->name('home');
 Auth::routes();

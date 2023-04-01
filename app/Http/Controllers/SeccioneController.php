@@ -139,4 +139,13 @@ class SeccioneController extends Controller
         return redirect()->route('secciones.index')
             ->with('success', 'Seccione deleted successfully');
     }
+
+    // inicio
+    public function inicio()
+    {
+        $secciones = Seccione::paginate();
+
+        return view('menu.inicio', compact('secciones'))
+            ->with('i', (request()->input('page', 1) - 1) * $secciones->perPage());
+    }
 }
