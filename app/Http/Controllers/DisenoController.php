@@ -146,9 +146,24 @@ class DisenoController extends Controller
      */
     public function destroy($id)
     {
-        $diseno = Diseno::find($id)->delete();
-
-        return redirect()->route('disenos.index')
+        $diseno = Diseno::find($id);
+        $id = $diseno->categoria_id;
+        $nombre = $diseno->categoria->nombre;
+        
+        if ($diseno->imagen != null) {
+            $fileImagen = base_path('storage/app/public/'.explode("/",$diseno->imagen)[2]);
+            if(file_exists($fileImagen)){
+                unlink($fileImagen);
+            }
+        }
+        if ($diseno->imagen_ligera != null) {
+            $fileImagen = base_path('storage/app/public/'.explode("/",$diseno->imagen_ligera)[2]);
+            if(file_exists($fileImagen)){
+                unlink($fileImagen);
+            }
+        }
+        $diseno->delete();
+        return redirect()->route('disenos.index',['id' => $id,'nombre' =>$nombre])
             ->with('success', 'Diseno deleted successfully');
     }
 }
