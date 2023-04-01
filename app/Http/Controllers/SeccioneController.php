@@ -144,7 +144,6 @@ class SeccioneController extends Controller
     public function inicio()
     {
         $secciones = Seccione::paginate();
-
         return view('menu.inicio', compact('secciones'))
             ->with('i', (request()->input('page', 1) - 1) * $secciones->perPage());
     }
