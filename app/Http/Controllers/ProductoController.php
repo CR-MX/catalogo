@@ -126,8 +126,22 @@ class ProductoController extends Controller
      */
     public function destroy($id)
     {
-        $producto = Producto::find($id)->delete();
-
+        $producto = Producto::find($id);
+        // se elimina la imagen
+        if ($producto->imagen != null) {
+            $fileImagen = base_path('storage/app/public/'.explode("/",$producto->imagen)[2]);
+            if(file_exists($fileImagen)){
+                unlink($fileImagen);
+            }
+        }
+        // se eleminan las relaciones con categoria
+        $RelacionProCat = $producto->categoria;
+        $disController = new ProductosCategoriaController;
+        foreach ($RelacionProCat as $item) {
+            $disController->destroy($item->id);
+        }
+        // se elimina el registro
+        $producto->delete();
         return redirect()->route('productos.index')
             ->with('success', 'Producto deleted successfully');
     }
