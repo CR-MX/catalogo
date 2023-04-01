@@ -90,20 +90,15 @@ class ProductosCategoriaController extends Controller
 
         $productosCategoria->update($request->all());
 
-        return redirect()->route('productos-categorias.index')
+        return redirect()->route('productos-categoria.index')
             ->with('success', 'ProductosCategoria updated successfully');
     }
 
-    /**
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
-     */
+
+    // solo se usa como metodo externo
     public function destroy($id)
     {
         $productosCategoria = ProductosCategoria::find($id)->delete();
-
-        return redirect()->route('productos-categorias.index')
-            ->with('success', 'ProductosCategoria deleted successfully');
+        return $productosCategoria;
     }
 }

@@ -31,6 +31,13 @@ class Categoria extends Model
      */
     protected $fillable = ['nombre'];
 
-
+    public function diseno()
+    {
+        return $this->hasMany('App\Diseno', 'categoria_id', 'id');
+    }
+    public function productoCategoria()
+    {
+        return $this->hasMany('App\ProductosCategoria', 'categoria_id', 'id');
+    }
 
 }

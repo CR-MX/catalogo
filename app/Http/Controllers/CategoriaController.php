@@ -101,8 +101,20 @@ class CategoriaController extends Controller
      */
     public function destroy($id)
     {
-        $categoria = Categoria::find($id)->delete();
-
+        $categoria = Categoria::find($id);
+        // elimina disenos
+        $disenos = $categoria->diseno;
+        $disenoController = new DisenoController;
+        foreach ($disenos as $item) {
+            $disenoController->destroy($item->id);
+        }
+        // elimina productos-categoria
+        $RelacionProCat = $categoria->productoCategoria;
+        $disController = new ProductosCategoriaController;
+        foreach ($RelacionProCat as $item) {
+            $disController->destroy($item->id);
+        }
+        $categoria->delete();
         return redirect()->route('categorias.index')
             ->with('success', 'Categoria deleted successfully');
     }
