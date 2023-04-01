@@ -50,8 +50,8 @@ class ProductoController extends Controller
     {
         request()->validate(Producto::$rules);
         // crear la clave como folio 
-        $clave = Producto::max('clave')+1;
-        $request->request->add(['clave' => $clave]);
+        $claveMaxima = Producto::max('clave')+1;
+        $request->request->add(['clave' => $claveMaxima]);
         $producto = Producto::create($request->all());
         if ($producto->imagen != null) {
             $nombre = 'imgProducto_'.$producto->id.'_'.$producto->imagen->getClientOriginalName();
@@ -61,7 +61,7 @@ class ProductoController extends Controller
             $getProducto->save();
         }
         return redirect()->route('producto.index',['id' => $producto->seccion_id,'nombre' =>$producto->seccion->nombre])
-        ->with('success', 'Producto creado con clave "'.$clave.'".');
+        ->with('success', 'Producto creado con clave "'.$claveMaxima.'".');
     }
 
     /**
