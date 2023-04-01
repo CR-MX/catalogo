@@ -23,7 +23,6 @@ class Producto extends Model
 {
     
     static $rules = [
-		'clave' => 'required',
 		'nombre' => 'required',
     ];
 
