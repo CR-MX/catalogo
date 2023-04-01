@@ -31,6 +31,10 @@ class Seccione extends Model
      */
     protected $fillable = ['nombre','imagen'];
 
-
+    // productos relacionados
+    public function productos()
+    {
+        return $this->hasMany('App\Producto', 'seccion_id', 'id');
+    }
 
 }

@@ -120,8 +120,22 @@ class SeccioneController extends Controller
      */
     public function destroy($id)
     {
-        $seccione = Seccione::find($id)->delete();
-
+        $seccione = Seccione::find($id);
+        // borra su imagen de seccion
+        if ($seccione->imagen != null) {
+            $fileImagen = base_path('storage/app/public/'.explode("/",$seccione->imagen)[2]);
+            if(file_exists($fileImagen)){
+                unlink($fileImagen);
+            }
+        }
+        // elimina los productos relacionados
+        $secProductos = $seccione->productos;
+        $productoController = new ProductoController;
+        foreach ($secProductos as $item) {
+            $productoController->destroy($item->id);
+        }
+        // elimina registro seccion
+        $seccione->delete();
         return redirect()->route('secciones.index')
             ->with('success', 'Seccione deleted successfully');
     }
