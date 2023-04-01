@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 </head>
 <body>
     <div id="app">
@@ -91,5 +92,61 @@
             @yield('content')
         </main>
     </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    @stack('scripts')
+    <script>
+        function myFunction(){
+            document.getElementById("btn-aceptar").style.visibility = "hidden";
+            setTimeout(() => document.getElementById("btn-aceptar").style.visibility = "visible", 3600);  
+        };   
+        
+        $(document).ready( function () {
+            $('#table').DataTable({
+                responsive:true,
+                autoWidth: false,   
+                order: [
+                    [0, 'desc']
+                ],
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "No se encontró nada – lo siento",
+                    "info": "Página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros",
+                    "infoFiltered": "(filtered from _MAX_ total records)",
+                    "search": "Buscar:",
+                    "paginate": {
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+
+            $('.show_confirm').click(function(event) {
+                var form =  $(this).closest("form");
+                var name = $(this).data("name");
+                event.preventDefault();
+                Swal.fire({
+                title: '¿Estas seguro?',
+                text: "¡No podrás revertir esto!",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '¡Sí, bórralo!',
+                cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                })
+            });
+        });
+
+        $('#example-one a').click(function(e) {
+            $('#example-one a').removeClass('current_page_item');
+            $(this).addClwass('current_page_item');
+        });
+    </script>
 </body>
 </html>
