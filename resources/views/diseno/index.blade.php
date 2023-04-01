@@ -54,12 +54,16 @@
 											<td>{{ $diseno->clave }}</td>
 											<td>
                                                 @if ($diseno->imagen_ligera)
-                                                <a href="{{ $diseno->imagen_ligera }}" target="_blank">Ver Imagen Ligera</a>
+                                                    <a href="{{ $diseno->imagen_ligera }}" target="_blank">Ver Imagen Ligera</a>
+                                                @else 
+                                                    No hay
                                                 @endif
                                             </td>
 											<td>
                                                 @if ($diseno->imagen)
-                                                <a href="{{ $diseno->imagen }}" target="_blank">Ver Imagen</a>
+                                                    <a href="{{ $diseno->imagen }}" target="_blank">Ver Imagen</a>
+                                                @else 
+                                                    No hay
                                                 @endif
                                             </td>
 

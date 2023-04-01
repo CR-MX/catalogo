@@ -51,7 +51,9 @@
 											<td>{{ $seccione->nombre }}</td>
 											<td>
                                                 @if ($seccione->imagen)
-                                                <a href="{{ $seccione->imagen }}" target="_blank">Ver Imagen</a>
+                                                    <a href="{{ $seccione->imagen }}" target="_blank">Ver Imagen</a>
+                                                @else 
+                                                    No hay
                                                 @endif
                                             </td>
                                             <td>

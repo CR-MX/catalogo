@@ -58,7 +58,9 @@
 											<td>{{ $producto->descripcion }}</td>
 											<td>
                                                 @if ($producto->imagen)
-                                                <a href="{{ $producto->imagen }}" target="_blank">Ver Imagen</a>
+                                                    <a href="{{ $producto->imagen }}" target="_blank">Ver Imagen</a>
+                                                @else 
+                                                    No hay
                                                 @endif
                                             </td>
                                             <td>
