@@ -24,8 +24,6 @@ class Diseno extends Model
     
     static $rules = [
 		'clave' => 'required',
-		'imagen_ligera' => 'required',
-		'imagen' => 'required',
     ];
 
     protected $perPage = 20;

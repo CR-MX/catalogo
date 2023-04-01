@@ -113,11 +113,10 @@ class DisenoController extends Controller
             }
             $nombre = 'imgDiseno_'.$diseno->id.'_'. $request->imagen->getClientOriginalName();
             $request->imagen->storeAs('public',$nombre);
-            $diseno->update($request->all());
+            $diseno->update($request->except('imagen_ligera'));
             $diseno->imagen = '/storage/'.$nombre;
             $diseno->save();  
         }
-        
         if ($request->imagen_ligera != null) {
             $seModifico = true;
             if ($diseno->imagen_ligera != null) {
@@ -128,7 +127,7 @@ class DisenoController extends Controller
             }
             $nombre = 'imgLigDiseno_'.$diseno->id.'_'. $request->imagen_ligera->getClientOriginalName();
             $request->imagen_ligera->storeAs('public',$nombre);
-            $diseno->update($request->all());
+            $diseno->update($request->except('imagen'));
             $diseno->imagen_ligera = '/storage/'.$nombre;
             $diseno->save();  
         }
