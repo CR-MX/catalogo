@@ -9,11 +9,6 @@
                     {!! $errors->first('categoria_id', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
                 <div class="form-group">
-                    {{ Form::label('clave') }}
-                    {{ Form::text('clave', $diseno->clave, ['class' => 'form-control' . ($errors->has('clave') ? ' is-invalid' : ''), 'placeholder' => 'Clave']) }}
-                    {!! $errors->first('clave', '<div class="invalid-feedback">:message</div>') !!}
-                </div>
-                <div class="form-group">
                     @if ($diseno->imagen_ligera)
                         <label for="imagen_ligera">
                             Imagen Ligera (<a href="{{ $diseno->imagen_ligera }}" target="_blank">Ver Imagen anterior</a>, si subes una imgen se va a sobrescribir)

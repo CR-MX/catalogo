@@ -46,7 +46,8 @@ class DisenoController extends Controller
     public function store(Request $request)
     {
         request()->validate(Diseno::$rules);
-
+        $claveMaxima = Diseno::max('clave')+1;
+        $request->request->add(['clave' => $claveMaxima]);
         $diseno = Diseno::create($request->all());
         if ($diseno->imagen_ligera != null) {
             $nombre = 'imgLigDiseno_'.$diseno->id.'_'.$diseno->imagen_ligera->getClientOriginalName();
@@ -63,7 +64,7 @@ class DisenoController extends Controller
             $getDiseno->save();
         }
         return redirect()->route('disenos.index',['id' => $diseno->categoria_id,'nombre' =>$diseno->categoria->nombre])
-            ->with('success', 'Diseno created successfully.');
+            ->with('success', 'Diseno creado con clave "'.$claveMaxima.'".');
     }
 
     /**
