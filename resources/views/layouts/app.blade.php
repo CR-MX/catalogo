@@ -123,7 +123,7 @@
                 }
             });
 
-            $('.show_confirm').click(function(event) {
+            $('.confirmacion').click(function(event) {
                 var form =  $(this).closest("form");
                 var name = $(this).data("name");
                 event.preventDefault();
