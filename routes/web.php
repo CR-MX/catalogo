@@ -25,6 +25,6 @@ Route::put('/updatecatpro/{id}', 'App\Http\Controllers\ProductoController@update
 Route::get('/diseno/{id}/{nombre}', 'App\Http\Controllers\DisenoController@index')->name('diseno.index');
 // inicio
 Route::get('/', 'App\Http\Controllers\SeccioneController@inicio')->name('carruseles.inicio');
-Route::get('/', 'App\Http\Controllers\SeccioneController@inicio')->name('carruseles.inicio');
-// Route::view('/', 'home')->name('home');
+Route::get('/listaProductos/{id}', 'App\Http\Controllers\SeccioneController@listaProductos')->name('secciones.listaProductos');
+
 Auth::routes();

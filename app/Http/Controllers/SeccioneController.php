@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Producto;
 use App\Seccione;
 use Illuminate\Http\Request;
 
@@ -146,5 +147,12 @@ class SeccioneController extends Controller
         $secciones = Seccione::paginate();
         return view('menu.inicio', compact('secciones'))
             ->with('i', (request()->input('page', 1) - 1) * $secciones->perPage());
+    }
+    // vista de lista de productos
+    public function listaProductos($seccion_id)
+    {
+        $producto = Producto::where('seccion_id',$seccion_id)->get();
+        $nombre = Seccione::find($seccion_id)->nombre;
+        return view('menu.listaProductos', compact('producto','nombre'));
     }
 }
