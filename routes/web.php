@@ -26,5 +26,6 @@ Route::get('/diseno/{id}/{nombre}', 'App\Http\Controllers\DisenoController@index
 // inicio
 Route::get('/', 'App\Http\Controllers\SeccioneController@inicio')->name('carruseles.inicio');
 Route::get('/listaProductos/{id}', 'App\Http\Controllers\SeccioneController@listaProductos')->name('secciones.listaProductos');
+Route::get('/producto/{id}', 'App\Http\Controllers\SeccioneController@producto')->name('secciones.producto');
 
 Auth::routes();

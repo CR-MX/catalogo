@@ -148,11 +148,21 @@ class SeccioneController extends Controller
         return view('menu.inicio', compact('secciones'))
             ->with('i', (request()->input('page', 1) - 1) * $secciones->perPage());
     }
+
     // vista de lista de productos
     public function listaProductos($seccion_id)
     {
         $producto = Producto::where('seccion_id',$seccion_id)->get();
         $nombre = Seccione::find($seccion_id)->nombre;
         return view('menu.listaProductos', compact('producto','nombre'));
+    }
+
+    // vista deproducto especifico
+    public function producto($producto_id)
+    {
+        $producto = Producto::find($producto_id);
+        $categorias = $producto->categoria;
+        $esUno = $categorias->count() == 1 || $categorias->count() == 0 ? True:false;
+        return view('menu.producto', compact('producto','categorias','esUno'));
     }
 }

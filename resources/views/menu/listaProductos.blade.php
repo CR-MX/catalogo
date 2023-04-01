@@ -17,7 +17,7 @@
                 <div class="row text-center scrollable-list" >
                 @foreach ($producto as $item)
                     <div class="col-4 h-200 border rounded" >
-                        <a href="{{ route('secciones.listaProductos',$item->id) }}">
+                        <a href="{{ route('secciones.producto',$item->id) }}">
                             <img src="{{ $item->imagen }}" class="img-fluid" alt=" imagen 1">
                         </a>
                         <p class="card-text">{{$item->nombre}}</p>
