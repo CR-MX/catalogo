@@ -25,7 +25,20 @@
                 </span>
 
                 @if ($esUno)
-                    
+                    <hr>
+                    @if ($catfirst = $categorias->first())
+                        <h5 class="card-title">{{$catfirst->categoria->nombre}}</h5>
+                        <div class="row text-center scrollable-list" >
+                            @foreach ($catfirst->categoria->diseno as $item)
+                                <div class="col-4 h-200 border rounded" >
+                                    <a href="{{ $item->imagen }}">
+                                        <img src="{{ $item->imagen_ligera }}" class="img-fluid" alt=" imagen 1">
+                                    </a>
+                                    <p class="card-text">Clave: {{$catfirst->clave.'-'.$item->clave}}</p>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
                 @else
                     <ul class="list-group">
                         <li class="list-group-item list-group-item-primary">
