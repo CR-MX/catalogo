@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Categoria;
+use App\Diseno;
 use App\Producto;
 use App\Seccione;
 use Illuminate\Http\Request;
@@ -164,5 +166,15 @@ class SeccioneController extends Controller
         $categorias = $producto->categoria;
         $esUno = $categorias->count() == 1 || $categorias->count() == 0 ? True:false;
         return view('menu.producto', compact('producto','categorias','esUno'));
+    }
+
+    // vista deproducto especifico
+    public function listaDisenos(Request $request)
+    {
+        $categoria_id = $request->categoria_id;
+        $clave = $request->clave;
+        $diseno = Diseno::where('categoria_id',$categoria_id)->get();
+        $nombre = Categoria::find($categoria_id)->nombre;
+        return view('menu.diseno', compact('diseno','nombre','clave'));
     }
 }
