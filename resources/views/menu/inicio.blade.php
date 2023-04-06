@@ -16,7 +16,7 @@
                 <p class="card-text">
                     <strong>Nota:</strong>
                     Todos los productos son personalizables para hacer tu cotización envianos un mensaje.
-                    <a href="https://wa.me/+524921275690">WhatsApp</a>
+                    <a href="https://wa.me/+524922238990">WhatsApp</a>
                 </p>
             </div>
         </div>
