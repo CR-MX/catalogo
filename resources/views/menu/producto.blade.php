@@ -5,7 +5,7 @@
 @endsection
 <style>
     .scrollable-list {
-        max-height: 75vh;
+        max-height: 45vh;
         overflow-y: auto;
     }
 
@@ -27,6 +27,7 @@
                 @if ($esUno)
                     <hr>
                     @if ($catfirst = $categorias->first())
+                        <?php ?>
                         <h5 class="card-title">{{$catfirst->categoria->nombre}}</h5>
                         <div class="row text-center scrollable-list" >
                             @foreach ($catfirst->categoria->diseno as $item)
@@ -34,7 +35,7 @@
                                     <a href="{{ $item->imagen }}">
                                         <img src="{{ $item->imagen_ligera }}" class="img-fluid" alt=" imagen 1">
                                     </a>
-                                    <p class="card-text">Clave: {{$catfirst->clave.'-'.$item->clave}}</p>
+                                    <p class="card-text">Clave: {{$producto->clave.'-'.$item->clave}}</p>
                                 </div>
                             @endforeach
                         </div>
