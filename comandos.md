@@ -27,3 +27,6 @@ php artisan storage:linka
 
 # Para llenar tablas en  producción OJO SOBREESCRIBE TODO
 migrate:fresh --seed --force
+
+# para que funcionen los forms en larevel 8
+composer require laravelcollective/html
