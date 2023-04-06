@@ -25,7 +25,7 @@ class Diseno extends Model
     static $rules = [
     ];
 
-    protected $perPage = 20;
+    protected $perPage = 10000;
 
     /**
      * Attributes that should be mass-assignable.

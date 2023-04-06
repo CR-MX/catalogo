@@ -26,7 +26,7 @@ class Producto extends Model
 		'nombre' => 'required',
     ];
 
-    protected $perPage = 20;
+    protected $perPage = 10000;
 
     /**
      * Attributes that should be mass-assignable.
