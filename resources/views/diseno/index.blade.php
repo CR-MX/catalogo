@@ -1,3 +1,4 @@
+@if (Auth::check())    
 @extends('layouts.app')
 
 @section('template_title')
@@ -82,8 +83,8 @@
                         </div>
                     </div>
                 </div>
-                {!! $disenos->links() !!}
             </div>
         </div>
     </div>
 @endsection
+@endif

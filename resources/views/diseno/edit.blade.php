@@ -1,3 +1,4 @@
+@if (Auth::check())    
 @extends('layouts.app')
 
 @section('template_title')
@@ -29,3 +30,4 @@
         </div>
     </section>
 @endsection
+@endif
