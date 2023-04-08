@@ -10819,3 +10819,7 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.imglogo{
+  width: 240px; 
+  height: 40px;
+}
