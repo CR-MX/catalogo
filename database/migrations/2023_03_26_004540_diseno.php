@@ -19,7 +19,6 @@ class Diseno extends Migration
             $table->foreign('categoria_id')
                 ->references('id')->on('categorias');
             $table->integer('clave');
-            $table->longText('imagen_ligera')->nullable();
             $table->longText('imagen')->nullable();
             $table->timestamps();
 
