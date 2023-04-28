@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Diseno;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 /**
@@ -46,22 +47,29 @@ class DisenoController extends Controller
     public function store(Request $request)
     {
         request()->validate(Diseno::$rules);
-        $claveMaxima = Diseno::max('clave')+1;
-        $request->request->add(['clave' => $claveMaxima]);
-        $diseno = Diseno::create($request->all());
-        if ($diseno->imagen_ligera != null) {
-            $nombre = 'imgLigDiseno_'.$diseno->id.'_'.$diseno->imagen_ligera->getClientOriginalName();
-            $diseno->imagen_ligera->storeAs('public',$nombre);
-            $getDiseno = Diseno::find($diseno->id);
-            $getDiseno->imagen_ligera = '/storage/'.$nombre;
-            $getDiseno->save();
-        }
-        if ($diseno->imagen != null) {
-            $nombre = 'imgDiseno_'.$diseno->id.'_'.$diseno->imagen->getClientOriginalName();
-            $diseno->imagen->storeAs('public',$nombre);
-            $getDiseno = Diseno::find($diseno->id);
-            $getDiseno->imagen = '/storage/'.$nombre;
-            $getDiseno->save();
+        $categoria_id = $request->categoria_id; 
+    $imagenes = $request->imagen;
+        $dateNow = Carbon::now()->toDateTimeString();
+
+        foreach ($imagenes as $item) {
+            $claveMaxima = Diseno::max('clave')+1;
+            $datos = [
+                'categoria_id' => $categoria_id,
+                'clave' => $claveMaxima,
+                'imagen' => $item,
+                'created_at' => $dateNow,
+                'updated_at' => $dateNow,
+            ];
+            $diseno = Diseno::create($datos);
+
+
+            if ($diseno->imagen != null) {
+                $nombre = 'imgDiseno_'.$diseno->id.'_'.$diseno->imagen->getClientOriginalName();
+                $diseno->imagen->storeAs('public',$nombre);
+                $getDiseno = Diseno::find($diseno->id);
+                $getDiseno->imagen = '/storage/'.$nombre;
+                $getDiseno->save();
+            }
         }
         return redirect()->route('disenos.index',['id' => $diseno->categoria_id,'nombre' =>$diseno->categoria->nombre])
             ->with('success', 'Diseno creado con clave "'.$claveMaxima.'".');

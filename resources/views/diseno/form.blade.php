@@ -12,7 +12,7 @@
                 <div class="form-group">
                     <label> Subir Imagenes </label>
                     <br>
-                    <input multiple type="file" name="imagen" size="50" class="form-control">
+                    <input multiple type="file" name="imagen[]" size="50" class="form-control">
                 </div>
             </div>
 			<br>

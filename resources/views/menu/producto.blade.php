@@ -33,7 +33,7 @@
                             @foreach ($catfirst->categoria->diseno as $item)
                                 <div class="col-4 h-200 border rounded" >
                                     <a href="{{ $item->imagen }}">
-                                        <img src="{{ $item->imagen_ligera }}" class="img-fluid" alt=" imagen 1">
+                                        <img src="{{ $item->imagen }}" class="img-fluid" alt=" imagen 1">
                                     </a>
                                     <p class="card-text">Clave: {{$producto->clave.'-'.$item->clave}}</p>
                                 </div>
